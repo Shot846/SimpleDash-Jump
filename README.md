@@ -12,3 +12,6 @@ shot_allowdash = true/false
 Any mod
 
 Runs with GZDoom / Zandronum
+
+## Credits
+Special thanks to TerminusEst13 for reference code
