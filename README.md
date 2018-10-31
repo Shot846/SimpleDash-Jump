@@ -1,4 +1,4 @@
-# SimpleDash-Jump
+# Simple Dash & Jump
 ## A Simple Dash & Jump mod for Doom
 ## What does it Do?
 - Simple Dashing in 4 directions
