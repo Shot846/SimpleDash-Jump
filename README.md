@@ -5,8 +5,8 @@
 - Simple Double Jump
 
 ## Cvars
-shot_allowdoublejump = true/false
-shot_allowdash = true/false
+- shot_allowdoublejump = true/false
+- shot_allowdash = true/false
 
 ## Compatibility
 Any mod
