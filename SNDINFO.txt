@@ -1,0 +1,2 @@
+ghost/step NINJDODG
+ghost/jump NINJJUMP

@@ -1,0 +1,2 @@
+actor OnTheGround : Inventory { Inventory.MaxAmount 1 }
+actor InTheAir : Inventory { Inventory.MaxAmount 1 }

@@ -1,0 +1,2 @@
+server noarchive bool shot_allowdash = true;
+server noarchive bool shot_allowdoublejump = true;

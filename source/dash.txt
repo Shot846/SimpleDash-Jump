@@ -1,0 +1,128 @@
+#include "zcommon.acs"
+
+int Buttons;
+int OldButtons;
+int ByteAngle;
+int Angle;
+int DashCooldown[64];
+int JumpCooldown[64];
+int xv;
+int yv;
+int zv;
+int x;
+int y;
+int z;
+
+//Original code by TerminusEst13, Huge thanks to him!
+//Modified by Shot846
+
+Script "MovementHook" ENTER
+{
+
+
+OldButtons = GetPlayerInput(-1, INPUT_OLDBUTTONS);
+Buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+ByteAngle = GetActorAngle(0) >> 8;
+Angle = GetActorAngle(0);
+
+xv = GetActorVelX(0);
+yv = GetActorVelY(0);
+zv = GetActorVelZ(0);
+            
+x = GetActorX(0);
+y = GetActorY(0);
+z = GetActorZ(0) - GetActorFloorZ(0);
+
+
+// DASH
+        if (CheckInventory("DashCooldown") == 0 && GetCvar("shot_allowdash"))
+        {
+          // Simple stuff. If the player hits Run and another button, they get thrown in a direction.
+          //if (buttons & BT_SPEED && buttons & BT_CROUCH && DashCooldown[PlayerNumber()] == 0)
+          //{
+          //   ThrustThingZ(0,128,1,0);
+          //    ActivatorSound("ghost/step",127);
+              //GiveInventory("GhostStepCooldown",35);
+          //    DashCooldown[PlayerNumber()] = 35;
+            //  ACS_NamedExecuteAlways("DashCooldowner",0);
+          //}
+          if (buttons & BT_SPEED && buttons & BT_FORWARD && DashCooldown[PlayerNumber()] == 0)
+          {
+              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)),24.0),yv + FixedMul(sin(GetActorAngle(0)),24.0),0.0,1,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)),24.0),yv + FixedMul(sin(GetActorAngle(0)),24.0),8.0,1,0); }
+              ActivatorSound("ghost/step",127);
+              DashCooldown[PlayerNumber()] = 35;
+			        ACS_NamedExecuteAlways("DashCooldowner",0);
+          }
+          if (buttons & BT_SPEED && buttons & BT_MOVELEFT && DashCooldown[PlayerNumber()] == 0)
+          {
+              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+16384),24.0),yv + FixedMul(sin(GetActorAngle(0)+16384),24.0),0.0,0,0); } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+16384),24.0),yv + FixedMul(sin(GetActorAngle(0)+16384),24.0),8.0,0,0); }
+              ActivatorSound("ghost/step",127);
+              DashCooldown[PlayerNumber()] = 35; 
+			        ACS_NamedExecuteAlways("DashCooldowner",0);
+          }
+          if (buttons & BT_SPEED && buttons & BT_BACK && DashCooldown[PlayerNumber()] == 0)
+          {
+              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+32768),24.0),yv + FixedMul(sin(GetActorAngle(0)+32768),24.0),0.0,0,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+32768),24.0),yv + FixedMul(sin(GetActorAngle(0)+32768),24.0),8.0,0,0);  }
+              ActivatorSound("ghost/step",127);
+              DashCooldown[PlayerNumber()] = 35;
+			        ACS_NamedExecuteAlways("DashCooldowner",0);
+          }
+          if (buttons & BT_SPEED && buttons & BT_MOVERIGHT && DashCooldown[PlayerNumber()] == 0)
+          {
+              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+49152),24.0),yv + FixedMul(sin(GetActorAngle(0)+49152),24.0),0.0,0,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+49152),24.0),yv + FixedMul(sin(GetActorAngle(0)+49152),24.0),8.0,0,0);  }
+              ActivatorSound("ghost/step",127);
+              DashCooldown[PlayerNumber()] = 35;
+			        ACS_NamedExecuteAlways("DashCooldowner",0);
+          }
+        }
+		
+		
+		//Double Jump
+        if (GetActorVelZ(0) <= 8 && !CheckInventory("OnTheGround") && CheckInventory("InTheAir") == 0 && buttons & BT_JUMP && GetCvar("sv_nojump") == 0 && JumpCooldown[PlayerNumber()] == 0 && GetCvar("shot_allowdoublejump"))
+        {
+          ActivatorSound("ghost/jump", 127);
+          ThrustThingZ(0,36,0,0);
+          GiveInventory("InTheAir", 1);
+          JumpCooldown[PlayerNumber()] = 17;
+          ACS_NamedExecuteAlways("JumpCooldowner",0);
+
+        }
+
+
+
+
+
+		
+		if (GetActorZ(0) - GetActorFloorZ(0) == 0)
+        {
+              GiveInventory("OnTheGround", 1);
+              TakeInventory("InTheAir",1);
+        }
+        else
+            { 
+             TakeInventory("OnTheGround", 1);      
+            }
+			
+delay(1);
+ACS_NamedExecuteAlways("MovementHook",0);
+}
+
+Script "DashCooldowner" (void)
+{
+While (DashCooldown[PlayerNumber()] != 0)
+{
+DashCooldown[PlayerNumber()]--;
+Delay(1);
+}
+}
+
+
+
+Script "JumpCooldowner" (void)
+{
+While (JumpCooldown[PlayerNumber()] != 0)
+{
+JumpCooldown[PlayerNumber()]--;
+Delay(1);
+}
+}
