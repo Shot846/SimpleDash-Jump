@@ -1,2 +1,2 @@
-ghost/step NINJDODG
-ghost/jump NINJJUMP
+dash DASH
+djump DJUMP

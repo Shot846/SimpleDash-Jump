@@ -56,26 +56,26 @@ z = GetActorZ(0) - GetActorFloorZ(0);
           //}
           if (buttons & BT_SPEED && buttons & BT_FORWARD && DashCooldown[PlayerNumber()] == 0)
           {
-              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)),32.0),yv + FixedMul(sin(GetActorAngle(0)),32.0),0.0,0,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)),8.0),yv + FixedMul(sin(GetActorAngle(0)),8.0),8.0,0,0); }
-              ActivatorSound("ghost/step",127);
+              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)),32.0),yv + FixedMul(sin(GetActorAngle(0)),32.0),0.0,0,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)),12.0),yv + FixedMul(sin(GetActorAngle(0)),12.0),8.0,0,0); }
+              ActivatorSound("DASH",127);
               DashCooldown[PlayerNumber()] = 35;
           }
           if (buttons & BT_SPEED && buttons & BT_MOVELEFT && DashCooldown[PlayerNumber()] == 0)
           {
-              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+16384),32.0),yv + FixedMul(sin(GetActorAngle(0)+16384),32.0),0.0,0,0); } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+16384),8.0),yv + FixedMul(sin(GetActorAngle(0)+16384),8.0),8.0,0,0); }
-              ActivatorSound("ghost/step",127);
+              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+16384),32.0),yv + FixedMul(sin(GetActorAngle(0)+16384),32.0),0.0,0,0); } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+16384),12.0),yv + FixedMul(sin(GetActorAngle(0)+16384),12.0),8.0,0,0); }
+              ActivatorSound("DASH",127);
               DashCooldown[PlayerNumber()] = 35; 
           }
           if (buttons & BT_SPEED && buttons & BT_BACK && DashCooldown[PlayerNumber()] == 0)
           {
-              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+32768),32.0),yv + FixedMul(sin(GetActorAngle(0)+32768),32.0),0.0,0,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+32768),8.0),yv + FixedMul(sin(GetActorAngle(0)+32768),8.0),8.0,0,0);  }
-              ActivatorSound("ghost/step",127);
+              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+32768),32.0),yv + FixedMul(sin(GetActorAngle(0)+32768),32.0),0.0,0,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+32768),12.0),yv + FixedMul(sin(GetActorAngle(0)+32768),12.0),8.0,0,0);  }
+              ActivatorSound("DASH",127);
               DashCooldown[PlayerNumber()] = 35;
           }
           if (buttons & BT_SPEED && buttons & BT_MOVERIGHT && DashCooldown[PlayerNumber()] == 0)
           {
-              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+49152),32.0),yv + FixedMul(sin(GetActorAngle(0)+49152),32.0),0.0,0,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+49152),8.0),yv + FixedMul(sin(GetActorAngle(0)+49152),8.0),8.0,0,0);  }
-              ActivatorSound("ghost/step",127);
+              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+49152),32.0),yv + FixedMul(sin(GetActorAngle(0)+49152),32.0),0.0,0,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+49152),12.0),yv + FixedMul(sin(GetActorAngle(0)+49152),12.0),8.0,0,0);  }
+              ActivatorSound("DASH",127);
               DashCooldown[PlayerNumber()] = 35;
           }
         }
@@ -107,7 +107,7 @@ Buttonz = GetPlayerInput(-1, INPUT_BUTTONS);
 
  if (GetActorVelZ(0) <= 8 && !CheckInventory("OnTheGround") && CheckInventory("InTheAir") == 0 && buttonz & BT_JUMP && GetCvar("sv_nojump") == 0 && GetCvar("shot_allowdoublejump"))
         {
-          ActivatorSound("ghost/jump", 127);
+          ActivatorSound("DJUMP", 127);
           ThrustThingZ(0,36,0,0);
           GiveInventory("InTheAir", 1);
         }
