@@ -15,6 +15,10 @@ int x;
 int y;
 int z;
 
+int dg = 32.0; //dash on the ground
+int da = 12.0; //dash in the air
+int du = 8.0; //dash upwards
+
 //Original code by TerminusEst13, Huge thanks to him!
 //Modified by Shot846
 
@@ -45,36 +49,27 @@ z = GetActorZ(0) - GetActorFloorZ(0);
 // DASH
         if (DashCooldown[PlayerNumber()] == 0 && GetCvar("shot_allowdash"))
         {
-          // Simple stuff. If the player hits Run and another button, they get thrown in a direction.
-          //if (buttons & BT_SPEED && buttons & BT_CROUCH && DashCooldown[PlayerNumber()] == 0)
-          //{
-          //   ThrustThingZ(0,128,1,0);
-          //    ActivatorSound("ghost/step",127);
-              //GiveInventory("GhostStepCooldown",35);
-          //    DashCooldown[PlayerNumber()] = 35;
-            //  ACS_NamedExecuteAlways("DashCooldowner",0);
-          //}
           if (buttons & BT_SPEED && buttons & BT_FORWARD && DashCooldown[PlayerNumber()] == 0)
           {
-              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)),32.0),yv + FixedMul(sin(GetActorAngle(0)),32.0),0.0,0,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)),12.0),yv + FixedMul(sin(GetActorAngle(0)),12.0),8.0,0,0); }
+              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)),dg),yv + FixedMul(sin(GetActorAngle(0)),dg),0.0,0,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)),da),yv + FixedMul(sin(GetActorAngle(0)),da),du,0,0); }
               ActivatorSound("DASH",127);
               DashCooldown[PlayerNumber()] = 35;
           }
           if (buttons & BT_SPEED && buttons & BT_MOVELEFT && DashCooldown[PlayerNumber()] == 0)
           {
-              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+16384),32.0),yv + FixedMul(sin(GetActorAngle(0)+16384),32.0),0.0,0,0); } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+16384),12.0),yv + FixedMul(sin(GetActorAngle(0)+16384),12.0),8.0,0,0); }
+              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+16384),dg),yv + FixedMul(sin(GetActorAngle(0)+16384),dg),0.0,0,0); } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+16384),da),yv + FixedMul(sin(GetActorAngle(0)+16384),da),du,0,0); }
               ActivatorSound("DASH",127);
               DashCooldown[PlayerNumber()] = 35; 
           }
           if (buttons & BT_SPEED && buttons & BT_BACK && DashCooldown[PlayerNumber()] == 0)
           {
-              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+32768),32.0),yv + FixedMul(sin(GetActorAngle(0)+32768),32.0),0.0,0,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+32768),12.0),yv + FixedMul(sin(GetActorAngle(0)+32768),12.0),8.0,0,0);  }
+              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+32768),dg),yv + FixedMul(sin(GetActorAngle(0)+32768),dg),0.0,0,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+32768),da),yv + FixedMul(sin(GetActorAngle(0)+32768),da),du,0,0);  }
               ActivatorSound("DASH",127);
               DashCooldown[PlayerNumber()] = 35;
           }
           if (buttons & BT_SPEED && buttons & BT_MOVERIGHT && DashCooldown[PlayerNumber()] == 0)
           {
-              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+49152),32.0),yv + FixedMul(sin(GetActorAngle(0)+49152),32.0),0.0,0,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+49152),12.0),yv + FixedMul(sin(GetActorAngle(0)+49152),12.0),8.0,0,0);  }
+              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+49152),dg),yv + FixedMul(sin(GetActorAngle(0)+49152),dg),0.0,0,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+49152),da),yv + FixedMul(sin(GetActorAngle(0)+49152),da),du,0,0);  }
               ActivatorSound("DASH",127);
               DashCooldown[PlayerNumber()] = 35;
           }
