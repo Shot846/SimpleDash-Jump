@@ -1,2 +1,10 @@
-dash DASH
-djump DJUMP
+dash1 DASH1
+dash2 DASH2
+djump1 DJUMP1
+djump2a djump2a
+djump2b djump2b
+
+
+$volume dash1 0.8
+$volume djump1 0.8
+$volume dash2 0.8

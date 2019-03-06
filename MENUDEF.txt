@@ -1,0 +1,41 @@
+AddOptionMenu "OptionsMenu"
+{
+	StaticText " "
+	Submenu "Simple DashNJump Options", "SimpleDashNJumpMenu"
+}
+
+OptionMenu "SimpleDashNJumpMenu" 
+{
+	Title "Simple DashNJump Options"
+	StaticText ""
+	Option "Enable Double Jump", 	"shot_allowdoublejump", "YesNo"
+	Option "Enable Dashing", 	"shot_allowdash", "YesNo"
+	Slider "Dash Cooldown", "shot_dashcooldown", 0, 350, 35
+	StaticText "Dash Cooldown in tick (Default 35)", White
+	StaticText ""
+	Option "Enable Dash Sound", 	"shot_allowdashsound", "YesNo"
+	Option "Enable Double Jump Sound", "shot_allowdjumpsound", "YesNo"
+	StaticText ""
+	Option "Dash Sound Type", "shot_dashsoundtype", "DashSoundType"
+	Option "Double Jump Sound Type", "shot_djumpsoundtype", "DJumpSoundType"
+	StaticText ""
+	Slider "Dash Ground Power", "shot_dashpowerground", 0, 200, 32
+	Slider "Dash Air Power", "shot_dashpowerair", 0, 200, 24
+	Slider "Dash Air Power Upwards", "shot_dashpowerairup", 0, 200, 8
+	//StaticText ""
+	//StaticText "RESET:"
+	//StaticText "Type PUKENAME ResetShieldCvarsToDefault in Console"
+}
+
+OptionValue "DashSoundType"
+{
+	0, "Anime 1"
+	1, "Anime 2"
+}
+
+OptionValue "DJumpSoundType"
+{
+	0, "Anime 1"
+	1, "DOOM (2016)"
+
+} 

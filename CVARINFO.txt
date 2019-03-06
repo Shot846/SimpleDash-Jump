@@ -1,2 +1,16 @@
-server noarchive bool shot_allowdash = true;
-server noarchive bool shot_allowdoublejump = true;
+server bool shot_allowdash = true;
+server bool shot_allowdoublejump = true;
+
+server float shot_dashpowerground = 32;
+server float shot_dashpowerair = 24;
+server float shot_dashpowerairup = 8;
+
+server int shot_dashcooldown = 35;
+
+
+user bool shot_allowdashsound = true;
+user bool shot_allowdjumpsound = true;
+
+
+user int shot_dashsoundtype = 0;
+user int shot_djumpsoundtype = 0;
