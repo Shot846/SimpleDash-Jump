@@ -15,5 +15,11 @@ Any mod
 
 Runs with GZDoom / Zandronum
 
+## Todo
+
+* More Customization
+* Rework Code
+
 ## Credits
 Special thanks to TerminusEst13 for reference code.
+
