@@ -1,12 +1,14 @@
 # Simple Dash & Jump
 ## A Simple Dash & Jump mod for Doom
 ## What does it Do?
+
 - Simple Dashing in 4 directions
 - Simple Double Jump
 
-## Cvars
-- shot_allowdoublejump = true/false
-- shot_allowdash = true/false
+## Customization
+* Ability to turn on and off double jump and dashing individually
+* Ability to change and turn off sounds individually
+* Ability to change the power of dash
 
 ## Compatibility
 Any mod
@@ -14,4 +16,4 @@ Any mod
 Runs with GZDoom / Zandronum
 
 ## Credits
-Special thanks to TerminusEst13 for reference code
+Special thanks to TerminusEst13 for reference code.
