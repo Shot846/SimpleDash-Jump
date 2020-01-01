@@ -18,7 +18,7 @@ Runs with GZDoom / Zandronum
 ## Todo
 
 * More Customization
-* Rework Code
+* Improve Code?
 
 ## Credits
 Special thanks to TerminusEst13 for reference code.
