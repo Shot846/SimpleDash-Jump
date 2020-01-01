@@ -42,7 +42,7 @@ z = GetActorZ(0) - GetActorFloorZ(0);
         {
           if (buttons & BT_SPEED && buttons & BT_FORWARD && DashCooldown[PlayerNumber()] == 0)
           {
-              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)),GetCVar("shot_dashpowerground")),yv + FixedMul(sin(GetActorAngle(0)),GetCVar("shot_dashpowerground")),0.0,0,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)),GetCVar("shot_dashpowerair")),yv + FixedMul(sin(GetActorAngle(0)),GetCVar("shot_dashpowerair")),GetCVar("shot_dashpowerairup"),0,0); }
+              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)),GetCVar("shot_dashpowerground")),yv + FixedMul(sin(GetActorAngle(0)),GetCVar("shot_dashpowerground")),0.0,1,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)),GetCVar("shot_dashpowerair")),yv + FixedMul(sin(GetActorAngle(0)),GetCVar("shot_dashpowerair")),GetCVar("shot_dashpowerairup"),1,0); }
               if (GetCVar("shot_allowdashsound") == 1)
               {
                 if (GetCVar("shot_dashsoundtype") == 0)
@@ -58,7 +58,7 @@ z = GetActorZ(0) - GetActorFloorZ(0);
           }
           if (buttons & BT_SPEED && buttons & BT_MOVELEFT && DashCooldown[PlayerNumber()] == 0)
           {
-              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+16384),GetCVar("shot_dashpowerground")),yv + FixedMul(sin(GetActorAngle(0)+16384),GetCVar("shot_dashpowerground")),0.0,0,0); } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+16384),GetCVar("shot_dashpowerair")),yv + FixedMul(sin(GetActorAngle(0)+16384),GetCVar("shot_dashpowerair")),GetCVar("shot_dashpowerairup"),0,0); }
+              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+16384),GetCVar("shot_dashpowerground")),yv + FixedMul(sin(GetActorAngle(0)+16384),GetCVar("shot_dashpowerground")),0.0,1,0); } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+16384),GetCVar("shot_dashpowerair")),yv + FixedMul(sin(GetActorAngle(0)+16384),GetCVar("shot_dashpowerair")),GetCVar("shot_dashpowerairup"),1,0); }
                if (GetCVar("shot_allowdashsound") == 1)
               {
                 if (GetCVar("shot_dashsoundtype") == 0)
@@ -74,7 +74,7 @@ z = GetActorZ(0) - GetActorFloorZ(0);
           }
           if (buttons & BT_SPEED && buttons & BT_BACK && DashCooldown[PlayerNumber()] == 0)
           {
-              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+32768),GetCVar("shot_dashpowerground")),yv + FixedMul(sin(GetActorAngle(0)+32768),GetCVar("shot_dashpowerground")),0.0,0,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+32768),GetCVar("shot_dashpowerair")),yv + FixedMul(sin(GetActorAngle(0)+32768),GetCVar("shot_dashpowerair")),GetCVar("shot_dashpowerairup"),0,0);  }
+              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+32768),GetCVar("shot_dashpowerground")),yv + FixedMul(sin(GetActorAngle(0)	),GetCVar("shot_dashpowerground")),0.0,1,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+32768),GetCVar("shot_dashpowerair")),yv + FixedMul(sin(GetActorAngle(0)+32768),GetCVar("shot_dashpowerair")),GetCVar("shot_dashpowerairup"),1,0);  }
                if (GetCVar("shot_allowdashsound") == 1)
               {
                 if (GetCVar("shot_dashsoundtype") == 0)
@@ -90,7 +90,7 @@ z = GetActorZ(0) - GetActorFloorZ(0);
           }
           if (buttons & BT_SPEED && buttons & BT_MOVERIGHT && DashCooldown[PlayerNumber()] == 0)
           {
-              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+49152),GetCVar("shot_dashpowerground")),yv + FixedMul(sin(GetActorAngle(0)+49152),GetCVar("shot_dashpowerground")),0.0,0,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+49152),GetCVar("shot_dashpowerair")),yv + FixedMul(sin(GetActorAngle(0)+49152),GetCVar("shot_dashpowerair")),GetCVar("shot_dashpowerairup"),0,0);  }
+              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+49152),GetCVar("shot_dashpowerground")),yv + FixedMul(sin(GetActorAngle(0)+49152),GetCVar("shot_dashpowerground")),0.0,1,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+49152),GetCVar("shot_dashpowerair")),yv + FixedMul(sin(GetActorAngle(0)+49152),GetCVar("shot_dashpowerair")),GetCVar("shot_dashpowerairup"),1,0);  }
                if (GetCVar("shot_allowdashsound") == 1)
               {
                 if (GetCVar("shot_dashsoundtype") == 0)
