@@ -8,20 +8,19 @@ OptionMenu "SimpleDashNJumpMenu"
 {
 	Title "Simple DashNJump Options"
 	StaticText ""
-	Option "Enable Double Jump", 	"shot_allowdoublejump", "YesNo"
-	Option "Enable Dashing", 	"shot_allowdash", "YesNo"
-	Slider "Dash Cooldown", "shot_dashcooldown", 0, 350, 35
+	Option "Enable Double Jump", 	"sv_allowdoublejump", "YesNo"
+	Option "Enable Dashing", 	"sv_allowdash", "YesNo"
+	Slider "Dash Cooldown", "sv_dashcooldown", 0, 350, 35
 	StaticText "Dash Cooldown in tick (Default 35)", White
 	StaticText ""
-	Option "Enable Dash Sound", 	"shot_allowdashsound", "YesNo"
-	Option "Enable Double Jump Sound", "shot_allowdjumpsound", "YesNo"
+	Option "Enable Dash Sound", 	"cl_allowdashsound", "YesNo"
+	Option "Enable Double Jump Sound", "cl_allowdjumpsound", "YesNo"
 	StaticText ""
-	Option "Dash Sound Type", "shot_dashsoundtype", "DashSoundType"
-	Option "Double Jump Sound Type", "shot_djumpsoundtype", "DJumpSoundType"
+	Option "Dash Sound Type", "cl_dashsoundtype", "DashSoundType"
+	Option "Double Jump Sound Type", "cl_djumpsoundtype", "DJumpSoundType"
 	StaticText ""
-	Slider "Dash Ground Power", "shot_dashpowerground", 0, 200, 32
-	Slider "Dash Air Power", "shot_dashpowerair", 0, 200, 24
-	Slider "Dash Air Power Upwards", "shot_dashpowerairup", 0, 200, 8
+	Slider "Dash Power", "sv_dashpower", 0, 200, 24
+	Slider "Dash  Power Upwards", "sv_dashpowerup", 0, 200, 8
 	//StaticText ""
 	//StaticText "RESET:"
 	//StaticText "Type PUKENAME ResetShieldCvarsToDefault in Console"
