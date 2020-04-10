@@ -3,7 +3,7 @@ server bool shot_allowdoublejump = true;
 
 server float shot_dashpowerground = 32;
 server float shot_dashpowerair = 24;
-server float shot_dashpowerairup = 8;
+server int shot_dashpowerairup = 8;
 
 server int shot_dashcooldown = 35;
 

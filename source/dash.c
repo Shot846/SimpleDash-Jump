@@ -19,13 +19,88 @@ DashCooldown[PlayerNumber()] = 0;
 JumpCooldown[PlayerNumber()] = 0;
 }
 
+
+Script "ThrustMe" (int angle)
+{
+	
+	if(angle == 8) //Absolute Forward
+	{
+	SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)),GetCVar("shot_dashpowerground")),yv + FixedMul(sin(GetActorAngle(0)),GetCVar("shot_dashpowerground")),0.0,FALSE,FALSE);
+	}
+	
+	if(angle == 4) //Absolute Left
+	{
+	SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+16384),GetCVar("shot_dashpowerground")),yv + FixedMul(sin(GetActorAngle(0)+16384),GetCVar("shot_dashpowerground")),0.0,FALSE,FALSE);
+	}
+	
+	if(angle == 2) //Absolute Backward
+	{
+	SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+32768),GetCVar("shot_dashpowerground")),yv + FixedMul(sin(GetActorAngle(0)+32768),GetCVar("shot_dashpowerground")),0.0,FALSE,FALSE);	
+	}
+	
+	if(angle == 6) //Absolute Right
+	{
+	SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+49152),GetCVar("shot_dashpowerground")),yv + FixedMul(sin(GetActorAngle(0)+49152),GetCVar("shot_dashpowerground")),0.0,FALSE,FALSE);
+	}
+	
+	if(angle == 7) //Forward Diagonal Left
+	{
+	SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+8192),GetCVar("shot_dashpowerground")),yv + FixedMul(sin(GetActorAngle(0)+8192),GetCVar("shot_dashpowerground")),0.0,FALSE,FALSE);
+	}
+	
+	if(angle == 9) //Forward Diagonal Right
+	{
+	SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+57344),GetCVar("shot_dashpowerground")),yv + FixedMul(sin(GetActorAngle(0)+57344),GetCVar("shot_dashpowerground")),0.0,FALSE,FALSE);
+	}
+	
+	if(angle == 1) //Backward Diagonal Left
+	{
+	SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+24576),GetCVar("shot_dashpowerground")),yv + FixedMul(sin(GetActorAngle(0)+24576),GetCVar("shot_dashpowerground")),0.0,FALSE,FALSE);
+	}
+	
+	if(angle == 3) //Backward Diagonal Right
+	{
+	SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+40960),GetCVar("shot_dashpowerground")),yv + FixedMul(sin(GetActorAngle(0)+40960),GetCVar("shot_dashpowerground")),0.0,FALSE,FALSE);
+	}
+	
+	if (CheckInventory("OnTheGround") == 0)			  
+			  {
+			  ThrustThingZ(0,GetCVar("shot_dashpowerairup"),0,1);
+			  }
+              else 
+			  { 
+			  ThrustThingZ(0,GetCVar("shot_dashpowerairup")/2,0,1);
+			  }
+	
+	Log(i:angle);
+	
+	
+	  if (GetCVar("shot_allowdashsound") == 1)
+              {
+                if (GetCVar("shot_dashsoundtype") == 0)
+                {
+                  PlaySound(0,"DASH1",CHAN_AUTO,1.0,FALSE);
+                }
+                if (GetCVar("shot_dashsoundtype") == 1)
+                {
+                  PlaySound(0,"DASH2",CHAN_AUTO,1.0,FALSE);
+                }
+              }
+				        
+              DashCooldown[PlayerNumber()] = GetCVar("shot_dashcooldown");
+	
+
+}
+
+
+
 Script "Dash" ENTER
 {
 
 
 OldButtons = GetPlayerInput(-1, INPUT_OLDBUTTONS);
 Buttons = GetPlayerInput(-1, INPUT_BUTTONS);
-//ByteAngle = GetActorAngle(0) >> 8;
+ByteAngle = GetActorAngle(0) >> 8;
 //Angle = GetActorAngle(0);
 
 xv = GetActorVelX(0);
@@ -35,92 +110,47 @@ zv = GetActorVelZ(0);
 x = GetActorX(0);
 y = GetActorY(0);
 z = GetActorZ(0) - GetActorFloorZ(0);
-
-
-// DASH
-        if (DashCooldown[PlayerNumber()] == 0 && GetCvar("shot_allowdash"))
+	
+		if (DashCooldown[PlayerNumber()] == 0 && GetCvar("shot_allowdash"))
         {
-          if (buttons & BT_SPEED && buttons & BT_FORWARD && DashCooldown[PlayerNumber()] == 0)
+          if (buttons & BT_SPEED)
           {
-              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)),GetCVar("shot_dashpowerground")),yv + FixedMul(sin(GetActorAngle(0)),GetCVar("shot_dashpowerground")),0.0,0,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)),GetCVar("shot_dashpowerair")),yv + FixedMul(sin(GetActorAngle(0)),GetCVar("shot_dashpowerair")),GetCVar("shot_dashpowerairup"),0,0); }
-              if (GetCVar("shot_allowdashsound") == 1)
-              {
-                if (GetCVar("shot_dashsoundtype") == 0)
-                {
-                  PlaySound(0,"DASH1",CHAN_AUTO,1.0,FALSE);
-                }
-                if (GetCVar("shot_dashsoundtype") == 1)
-                {
-                  PlaySound(0,"DASH2",CHAN_AUTO,1.0,FALSE);
-                }
-              }
-              DashCooldown[PlayerNumber()] = GetCVar("shot_dashcooldown");
-          }
-          if (buttons & BT_SPEED && buttons & BT_MOVELEFT && DashCooldown[PlayerNumber()] == 0)
-          {
-              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+16384),GetCVar("shot_dashpowerground")),yv + FixedMul(sin(GetActorAngle(0)+16384),GetCVar("shot_dashpowerground")),0.0,0,0); } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+16384),GetCVar("shot_dashpowerair")),yv + FixedMul(sin(GetActorAngle(0)+16384),GetCVar("shot_dashpowerair")),GetCVar("shot_dashpowerairup"),0,0); }
-               if (GetCVar("shot_allowdashsound") == 1)
-              {
-                if (GetCVar("shot_dashsoundtype") == 0)
-                {
-                  PlaySound(0,"DASH1",CHAN_AUTO,1.0,FALSE);
-                }
-                if (GetCVar("shot_dashsoundtype") == 1)
-                {
-                  PlaySound(0,"DASH2",CHAN_AUTO,1.0,FALSE);
-                }
-              }
-              DashCooldown[PlayerNumber()] = GetCVar("shot_dashcooldown");
-          }
-          if (buttons & BT_SPEED && buttons & BT_BACK && DashCooldown[PlayerNumber()] == 0)
-          {
-              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+32768),GetCVar("shot_dashpowerground")),yv + FixedMul(sin(GetActorAngle(0)+32768),GetCVar("shot_dashpowerground")),0.0,0,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+32768),GetCVar("shot_dashpowerair")),yv + FixedMul(sin(GetActorAngle(0)+32768),GetCVar("shot_dashpowerair")),GetCVar("shot_dashpowerairup"),0,0);  }
-               if (GetCVar("shot_allowdashsound") == 1)
-              {
-                if (GetCVar("shot_dashsoundtype") == 0)
-                {
-                  PlaySound(0,"DASH1",CHAN_AUTO,1.0,FALSE);
-                }
-                if (GetCVar("shot_dashsoundtype") == 1)
-                {
-                  PlaySound(0,"DASH2",CHAN_AUTO,1.0,FALSE);
-                }
-              }
-              DashCooldown[PlayerNumber()] = GetCVar("shot_dashcooldown");
-          }
-          if (buttons & BT_SPEED && buttons & BT_MOVERIGHT && DashCooldown[PlayerNumber()] == 0)
-          {
-              if (CheckInventory("OnTheGround") == 1) { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+49152),GetCVar("shot_dashpowerground")),yv + FixedMul(sin(GetActorAngle(0)+49152),GetCVar("shot_dashpowerground")),0.0,0,0);  } else { SetActorVelocity(0,xv + FixedMul(cos(GetActorAngle(0)+49152),GetCVar("shot_dashpowerair")),yv + FixedMul(sin(GetActorAngle(0)+49152),GetCVar("shot_dashpowerair")),GetCVar("shot_dashpowerairup"),0,0);  }
-               if (GetCVar("shot_allowdashsound") == 1)
-              {
-                if (GetCVar("shot_dashsoundtype") == 0)
-                {
-                  PlaySound(0,"DASH1",CHAN_AUTO,1.0,FALSE);
-                }
-                if (GetCVar("shot_dashsoundtype") == 1)
-                {
-                  PlaySound(0,"DASH2",CHAN_AUTO,1.0,FALSE);
-                }
-              }
-              DashCooldown[PlayerNumber()] = GetCVar("shot_dashcooldown");
+			  //8 = Absolute Forward
+              if (buttons & BT_FORWARD && !(buttons & BT_BACK) && !(buttons & BT_MOVELEFT) && !(buttons & BT_MOVERIGHT) ) { ACS_NamedExecuteAlways("ThrustMe",0,8); }
+			  //4 = Absolute Left
+              if (buttons & BT_MOVELEFT && !(buttons & BT_BACK) && !(buttons & BT_FORWARD) && !(buttons & BT_MOVERIGHT) ) { ACS_NamedExecuteAlways("ThrustMe",0,4); }
+			  //2 = Absolute Backward
+              if (buttons & BT_BACK && !(buttons & BT_MOVELEFT) && !(buttons & BT_FORWARD) && !(buttons & BT_MOVERIGHT)  ) { ACS_NamedExecuteAlways("ThrustMe",0,2); }
+			  //6 = Absolute Right
+              if (buttons & BT_MOVERIGHT && !(buttons & BT_BACK) && !(buttons & BT_MOVELEFT) && !(buttons & BT_FORWARD) ) { ACS_NamedExecuteAlways("ThrustMe",0,6); }
+	  
+			  //7 = Forward Diagonal Left
+			  if (buttons & BT_FORWARD && !(buttons & BT_BACK) && (buttons & BT_MOVELEFT) && !(buttons & BT_MOVERIGHT) ) { ACS_NamedExecuteAlways("ThrustMe",0,7); } 
+			  //9 = Forward Diagonal Right
+			  if (buttons & BT_FORWARD && !(buttons & BT_BACK) && !(buttons & BT_MOVELEFT) && (buttons & BT_MOVERIGHT) ) { ACS_NamedExecuteAlways("ThrustMe",0,9); }
+			  
+			  //1 = Backward Diagonal Left
+			  if (buttons & BT_BACK && (buttons & BT_MOVELEFT) && !(buttons & BT_FORWARD) && !(buttons & BT_MOVERIGHT)  ) { ACS_NamedExecuteAlways("ThrustMe",0,1); }	  
+			  //3 = Backward Diagonal Right
+			  if (buttons & BT_BACK && !(buttons & BT_MOVELEFT) && !(buttons & BT_FORWARD) && (buttons & BT_MOVERIGHT)  ) { ACS_NamedExecuteAlways("ThrustMe",0,3); }
+			  
+			  
+			  
+              
+			  
+			 
           }
         }
-    
-    
-While (DashCooldown[PlayerNumber()] > 0)
-{
-DashCooldown[PlayerNumber()]--;
-Delay(1);
+		
+	While (DashCooldown[PlayerNumber()] > 0)
+	{
+	DashCooldown[PlayerNumber()]--;
+	Delay(1);
+	}
+
+	delay(1);
+	ACS_NamedExecuteAlways("Dash",0);
 }
-
-
-    
-    
-      
-delay(1);
-ACS_NamedExecuteAlways("Dash",0);
-}
-
 
 
 
@@ -133,6 +163,10 @@ Buttonz = GetPlayerInput(-1, INPUT_BUTTONS);
 
  if (GetActorVelZ(0) <= 8 && !CheckInventory("OnTheGround") && CheckInventory("InTheAir") == 0 && buttonz & BT_JUMP && GetCvar("sv_nojump") == 0 && GetCvar("shot_allowdoublejump"))
         {
+		  if(GetCvar("shot_allowdoublejump"))
+		  {
+			  
+			
           if (GetCVar("shot_allowdjumpsound") == 1)
           {
             if (GetCVar("shot_djumpsoundtype") == 0)
@@ -152,10 +186,12 @@ Buttonz = GetPlayerInput(-1, INPUT_BUTTONS);
               }
               
             }          
-          }
-          ThrustThingZ(0,36,0,0);
-          GiveInventory("InTheAir", 1);
-        }
+		  }
+			ThrustThingZ(0,36,0,0);
+			GiveInventory("InTheAir", 1);
+			}
+		
+		}
 
         if (GetActorZ(0) - GetActorFloorZ(0) == 0)
         {
@@ -166,6 +202,7 @@ Buttonz = GetPlayerInput(-1, INPUT_BUTTONS);
             { 
              TakeInventory("OnTheGround", 1);      
             }
+			
+			
 ACS_NamedExecuteAlways("DoubleJump",0);
 }
-
