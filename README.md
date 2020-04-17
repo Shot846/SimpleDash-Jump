@@ -2,7 +2,7 @@
 ## A Simple Dash & Jump mod for Doom
 ## What does it Do?
 
-- Simple Dashing in 4 directions
+- Simple Dashing in 8 directions
 - Simple Double Jump
 
 ## Customization
